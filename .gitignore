@@ -1,0 +1,6 @@
+*.DS_Store
+*.prettier
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd

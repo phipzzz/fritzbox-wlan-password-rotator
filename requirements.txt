@@ -1,0 +1,6 @@
+flask
+apscheduler
+qrcode
+fritzconnection
+pillow
+gunicorn

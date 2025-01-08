@@ -1,0 +1,10 @@
+# Depending on your Docker version, you might need the version line
+# version: "3.9"
+services:
+    fb-pw-rotator:
+        image: "phipzzz/fritzbox-wlan-password-rotator:latest"
+        ports:
+            - "5000:5000"
+        restart: always
+        env_file:
+            - ./.env

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='src/styles/styles.css') }}"
+        />
+        <title>{{ WEB_PAGE_TITLE }} - Login</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>{{ WEB_PAGE_TITLE }}<br />Login</h1>
+            <form method="POST">
+                <input
+                    type="password"
+                    placeholder="Password"
+                    id="password"
+                    name="password"
+                    class="login-input"
+                    required
+                />
+                <button type="submit" class="login-btn btn">Login</button>
+            </form>
+            {% if error %}
+            <p style="color: red">{{ error }}</p>
+            {% endif %}
+        </div>
+        <script src="{{ url_for('static', filename='src/script/main.js') }}"></script>
+    </body>
+</html>
