@@ -2,6 +2,7 @@ from app.config import (
     WEB_PASSWORD,
     WEB_PAGE_TITLE,
     WEB_APP_SESSION_MAX_LIFETIME,
+    WEB_PUBLIC_ENABLED,
     CRON_MINUTE, 
     CRON_HOUR, 
     CRON_DAY, 

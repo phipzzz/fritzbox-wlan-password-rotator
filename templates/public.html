@@ -17,14 +17,6 @@
                 Password: <strong>{{ password }}</strong>
             </p>
             <img src="data:image/png;base64,{{ qr_code }}" alt="QR-Code" />
-            <form
-                action="{{ url_for('trigger_update_password') }}"
-                method="post"
-                onsubmit="confirmUpdatePassword(event)"
-            >
-                <button type="submit" class="btn">Generate new password</button>
-            </form>
-            <a class="btn" href="{{ url_for('logout') }}">Logout</a>
         </div>
         <script src="{{ url_for('static', filename='src/script/main.js') }}"></script>
     </body>
