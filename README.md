@@ -13,7 +13,7 @@ The fritzbox-wlan-password-rotator is a simple tool which automatically updates 
 -   Public page with network credentials for offices or public places e.g. cafes (can be enabled/disabled)
 -   Automatic data fetching if the guest WLAN credentials were changed directly on your FRITZ!Box (or somewhere else)
 
-<img src="./docs/qr-code_and_credentials.png" alt="qr code in safari" style="width: 700px; margin-right: 20px;"/>
+<img src="./images/qr-code_and_credentials.png" alt="qr code in safari" style="width: 700px; margin-right: 20px;"/>
 
 Further screenshots can be found [here](./images/).
 
