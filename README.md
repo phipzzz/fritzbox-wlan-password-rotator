@@ -10,11 +10,12 @@ The fritzbox-wlan-password-rotator is a simple tool which automatically updates 
 -   Password protected web ui to easily access WLAN credentials
 -   Dynamic QR code generation for guest WLAN credentials
 -   Trigger manual guest WLAN password renew
+-   Public page with network credentials for offices or public places e.g. cafes (can be enabled/disabled)
 -   Automatic data fetching if the guest WLAN credentials were changed directly on your FRITZ!Box (or somewhere else)
 
 <img src="./docs/qr-code_and_credentials.png" alt="qr code in safari" style="width: 700px; margin-right: 20px;"/>
 
-Further screenshots can be found [here](./docs/).
+Further screenshots can be found [here](./images/).
 
 ## Why
 
@@ -115,9 +116,11 @@ It is also possible to run the application without Docker, but this requires man
 Following FRITZ!Boxes were tested successfully. Feel free to add further ones. I guess almost all current models will work but they haven't been tested so far.
 
 -   **FRITZ!Box 7590 AX**
+
     -   FRITZ!OS 8.00
 
 -   **FRITZ!Box 7530**
+
     -   FRITZ!OS 8.00
 
 -   **FRITZ!Box 7490**

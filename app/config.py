@@ -49,6 +49,8 @@ WEB_PAGE_TITLE = os.environ.get('WEB_PAGE_TITLE', 'WLAN QR-Code')
 
 WEB_PASSWORD = os.environ.get('WEB_PASSWORD', 'password')
 
+WEB_PUBLIC_ENABLED = get_bool_value(os.environ.get('WEB_PUBLIC_ENABLED'), False)
+
 GUNICORN_PORT = 5000
 
 DEBUG = get_bool_value(os.environ.get('DEBUG'), False)

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='src/styles/styles.css') }}"
+        />
+        <title>{{ WEB_PAGE_TITLE }} - Error</title>
+    </head>
+    <body>
+        <h1>Error: Public page not enabled</h1>
+        <p>
+            The public page has not been enabled. Please contact your
+            administrator.
+        </p>
+        <script src="{{ url_for('static', filename='src/script/main.js') }}"></script>
+    </body>
+</html>
