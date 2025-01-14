@@ -3,6 +3,7 @@ from app.config import (
     WEB_PAGE_TITLE,
     WEB_APP_SESSION_MAX_LIFETIME,
     WEB_PUBLIC_ENABLED,
+    WEB_WELCOME_MESSAGE_CONTENT,
     CRON_MINUTE, 
     CRON_HOUR, 
     CRON_DAY, 
@@ -101,9 +102,9 @@ def render_qr():
 
     return base64.b64encode(buffer.getvalue()).decode()
 
-def render_page(page_name):
+def render_page(page_name, customWelcomeMsg):
 
-    return render_template(page_name, qr_code = render_qr(), password = current_password, WLAN_SSID = ssid, WEB_PAGE_TITLE = WEB_PAGE_TITLE)
+    return render_template(page_name, qr_code = render_qr(), password = current_password, WLAN_SSID = ssid, WEB_PAGE_TITLE = WEB_PAGE_TITLE, WEB_WELCOME_MESSAGE_CONTENT = customWelcomeMsg)
 
 @app.before_request
 def check_session():
@@ -145,7 +146,7 @@ def admin():
     if not session.get("authenticated"):
         return redirect(url_for("login"))
 
-    return render_page("admin.html")
+    return render_page("admin.html", "")
 
 @app.route("/public")
 def public():
@@ -153,7 +154,7 @@ def public():
     if not WEB_PUBLIC_ENABLED:
         return redirect(url_for("public_disabled"))
     
-    return render_page("public.html")
+    return render_page("public.html", WEB_WELCOME_MESSAGE_CONTENT)
 
 @app.route("/update-password", methods=["POST"])
 def trigger_update_password():

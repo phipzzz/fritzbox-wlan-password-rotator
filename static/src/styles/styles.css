@@ -6,19 +6,29 @@ body {
     box-sizing: border-box;
 }
 
-.container {
-    max-width: 400px;
+.qr-container {
+    max-width: 450px;
     margin: 0 auto;
     padding: 0 15px;
 }
 
-.container > h1 {
+.page-container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.page-container > h1 {
     text-align: center;
     font-size: 2.8rem;
 }
 
 p {
     font-size: 1.1rem;
+}
+
+#network-name {
+    margin-top: 50px;
 }
 
 img {
