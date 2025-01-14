@@ -25,7 +25,8 @@ from flask import (
     render_template, 
     redirect, 
     url_for, 
-    session
+    session,
+    g
 )
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.cron import CronTrigger
@@ -79,32 +80,7 @@ def update_password():
     current_password = new_password
     app.logger.info(f"New password set: {current_password}")
 
-@app.before_request
-def check_session():
-    if "authenticated" not in session and request.endpoint not in ["login", "static"]:
-        return redirect(url_for("login"))
-
-@app.route("/", methods = ["GET", "POST"])
-def login():
-    if request.method == "POST":
-        entered_password = request.form.get("password")
-        user_ip = request.remote_addr
-        if entered_password == WEB_PASSWORD:
-            session["authenticated"] = True
-            session.permanent = True
-            app.logger.info(f"{user_ip} - Successfully logged in")
-            return redirect(url_for("qr"))
-        
-        else:
-            app.logger.warning(f"{user_ip} - Failed login attempt")
-            return render_template("login.html", WEB_PAGE_TITLE = WEB_PAGE_TITLE, error = "Wrong password!")
-    return render_template("login.html", WEB_PAGE_TITLE = WEB_PAGE_TITLE)
-
-@app.route("/qr")
-def qr():
-
-    if not session.get("authenticated"):
-        return redirect(url_for("login"))
+def render_qr():
 
     global current_password
     wifi_data = f"WIFI:S:{ssid};T:WPA;P:{current_password};H:false;"
@@ -122,22 +98,85 @@ def qr():
     buffer = io.BytesIO()
     img.save(buffer, format = "PNG")
     buffer.seek(0)
-    img_base64 = base64.b64encode(buffer.getvalue()).decode()
 
-    return render_template("qr.html", qr_code = img_base64, password = current_password, WLAN_SSID = ssid, WEB_PAGE_TITLE = WEB_PAGE_TITLE)
+    return base64.b64encode(buffer.getvalue()).decode()
+
+def render_page(page_name):
+
+    return render_template(page_name, qr_code = render_qr(), password = current_password, WLAN_SSID = ssid, WEB_PAGE_TITLE = WEB_PAGE_TITLE)
+
+@app.before_request
+def check_session():
+
+    g.user_ip = request.remote_addr
+
+    if "authenticated" not in session and request.endpoint not in [
+        "login",
+        "static",
+        "public",
+        "public_disabled"
+    ]:
+
+        return redirect(url_for("login"))
+
+@app.route("/", methods = ["GET", "POST"])
+def login():
+
+    if request.method == "POST":
+        entered_password = request.form.get("password")
+
+        if entered_password == WEB_PASSWORD:
+            session["authenticated"] = True
+            session.permanent = True
+            app.logger.info(f"{g.user_ip} - Successfully logged in")
+
+            return redirect(url_for("admin"))
+        
+        else:
+            app.logger.warning(f"{g.user_ip} - Failed login attempt")
+
+            return render_template("login.html", WEB_PAGE_TITLE = WEB_PAGE_TITLE, error = "Wrong password!")
+        
+    return render_template("login.html", WEB_PAGE_TITLE = WEB_PAGE_TITLE)
+
+@app.route("/admin")
+def admin():
+
+    if not session.get("authenticated"):
+        return redirect(url_for("login"))
+
+    return render_page("admin.html")
+
+@app.route("/public")
+def public():
+
+    if not WEB_PUBLIC_ENABLED:
+        return redirect(url_for("public_disabled"))
+    
+    return render_page("public.html")
 
 @app.route("/update-password", methods=["POST"])
 def trigger_update_password():
-    app.logger.info(f"Password update maually triggered")
+
+    app.logger.info(f"Password update maually triggered by {g.user_ip}")
     update_password()
-    return redirect(url_for("qr"))
+
+    return redirect(url_for("admin"))
 
 @app.route("/logout")
 def logout():
+
     session.pop("authenticated", None)
-    user_ip = request.remote_addr
-    app.logger.info(f"{user_ip} - Successfully logged out")
+    app.logger.info(f"{g.user_ip} - Successfully logged out")
+
     return redirect(url_for("login"))
+
+@app.route("/public_disabled")
+def public_disabled():
+    
+    app.logger.info(f"{g.user_ip} - Public page disabled")
+
+    return render_template("public_disabled.html")
 
 scheduler = BackgroundScheduler()
 

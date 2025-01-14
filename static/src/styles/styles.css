@@ -12,7 +12,7 @@ body {
     padding: 0 15px;
 }
 
-h1 {
+.container > h1 {
     text-align: center;
     font-size: 2.8rem;
 }
@@ -27,9 +27,6 @@ img {
     height: auto;
     margin: 0 auto;
 }
-
-/* .container > form {
-} */
 
 .btn {
     display: block;
