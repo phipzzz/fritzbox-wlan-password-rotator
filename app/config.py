@@ -51,6 +51,8 @@ WEB_PASSWORD = os.environ.get('WEB_PASSWORD', 'password')
 
 WEB_PUBLIC_ENABLED = get_bool_value(os.environ.get('WEB_PUBLIC_ENABLED'), False)
 
+WEB_WELCOME_MESSAGE_CONTENT = os.environ.get('WEB_WELCOME_MESSAGE_CONTENT', '')
+
 GUNICORN_PORT = 5000
 
 DEBUG = get_bool_value(os.environ.get('DEBUG'), False)
