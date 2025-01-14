@@ -10,21 +10,28 @@
         <title>{{ WEB_PAGE_TITLE }}</title>
     </head>
     <body>
-        <div class="container">
+        <div class="page-container">
             <h1>{{ WEB_PAGE_TITLE }}</h1>
-            <p>
-                Network name: <strong>{{ WLAN_SSID }}</strong><br />
-                Password: <strong>{{ password }}</strong>
+            <p class="customWelcomeMsg">
+                {{ WEB_WELCOME_MESSAGE_CONTENT | safe }}
             </p>
-            <img src="data:image/png;base64,{{ qr_code }}" alt="QR-Code" />
-            <form
-                action="{{ url_for('trigger_update_password') }}"
-                method="post"
-                onsubmit="confirmUpdatePassword(event)"
-            >
-                <button type="submit" class="btn">Generate new password</button>
-            </form>
-            <a class="btn" href="{{ url_for('logout') }}">Logout</a>
+            <div class="qr-container">
+                <p id="network-name">
+                    Network name: <strong>{{ WLAN_SSID }}</strong><br />
+                </p>
+                <p id="password">Password: <strong>{{ password }}</strong></p>
+                <img src="data:image/png;base64,{{ qr_code }}" alt="QR-Code" />
+                <form
+                    action="{{ url_for('trigger_update_password') }}"
+                    method="post"
+                    onsubmit="confirmUpdatePassword(event)"
+                >
+                    <button type="submit" class="btn">
+                        Generate new password
+                    </button>
+                </form>
+                <a class="btn" href="{{ url_for('logout') }}">Logout</a>
+            </div>
         </div>
         <script src="{{ url_for('static', filename='src/script/main.js') }}"></script>
     </body>
