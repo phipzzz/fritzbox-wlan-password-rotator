@@ -8,6 +8,16 @@ def get_bool_value(env, default):
         return False
     else:
         return default
+    
+def load_version():
+    version_file = "/app/version.txt"
+
+    if os.path.exists(version_file):
+        with open(version_file, "r") as f:
+
+            return f.read().strip()
+        
+    return "Unknown"
 
 PW_CHARSET_ASCII_LOWERCASE = get_bool_value(os.environ.get('PW_CHARSET_ASCII_LOWERCASE'), True)
 PW_CHARSET_ASCII_UPPERCASE = get_bool_value(os.environ.get('PW_CHARSET_ASCII_UPPERCASE'), True)
@@ -51,6 +61,12 @@ WEB_PASSWORD = os.environ.get('WEB_PASSWORD', 'password')
 
 WEB_PUBLIC_ENABLED = get_bool_value(os.environ.get('WEB_PUBLIC_ENABLED'), False)
 
+WEB_WELCOME_MESSAGE_CONTENT = os.environ.get('WEB_WELCOME_MESSAGE_CONTENT', '')
+
+WEB_CUSTOM_BACKGROUND = get_bool_value(os.environ.get('WEB_CUSTOM_BACKGROUND'), False)
+
 GUNICORN_PORT = 5000
+
+VERSION = load_version()
 
 DEBUG = get_bool_value(os.environ.get('DEBUG'), False)
