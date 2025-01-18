@@ -4,11 +4,13 @@ from app.config import (
     WEB_APP_SESSION_MAX_LIFETIME,
     WEB_PUBLIC_ENABLED,
     WEB_WELCOME_MESSAGE_CONTENT,
+    WEB_CUSTOM_BACKGROUND,
     CRON_MINUTE, 
     CRON_HOUR, 
     CRON_DAY, 
     CRON_MONTH, 
     CRON_DAY_OF_WEEK,
+    VERSION,
     DEBUG
 )
 from app.generate_keys import (
@@ -65,7 +67,7 @@ def fetch_current_credentials():
     else:
         current_password = pw_temp
         app.logger.debug(f"Password changed from other source: {current_password}")
-
+        
     ssid = get_ssid()
 
 def update_password():
@@ -104,7 +106,16 @@ def render_qr():
 
 def render_page(page_name, customWelcomeMsg):
 
-    return render_template(page_name, qr_code = render_qr(), password = current_password, WLAN_SSID = ssid, WEB_PAGE_TITLE = WEB_PAGE_TITLE, WEB_WELCOME_MESSAGE_CONTENT = customWelcomeMsg)
+    return render_template(
+        page_name, 
+        qr_code = render_qr(), 
+        password = current_password, 
+        WLAN_SSID = ssid, 
+        WEB_PAGE_TITLE = WEB_PAGE_TITLE, 
+        WEB_WELCOME_MESSAGE_CONTENT = customWelcomeMsg, 
+        WEB_CUSTOM_BACKGROUND = WEB_CUSTOM_BACKGROUND,
+        VERSION = VERSION
+    )
 
 @app.before_request
 def check_session():
@@ -136,9 +147,9 @@ def login():
         else:
             app.logger.warning(f"{g.user_ip} - Failed login attempt")
 
-            return render_template("login.html", WEB_PAGE_TITLE = WEB_PAGE_TITLE, error = "Wrong password!")
+            return render_template("login.html", WEB_PAGE_TITLE = WEB_PAGE_TITLE, error = "Wrong password!", WEB_CUSTOM_BACKGROUND = WEB_CUSTOM_BACKGROUND, VERSION = VERSION)
         
-    return render_template("login.html", WEB_PAGE_TITLE = WEB_PAGE_TITLE)
+    return render_template("login.html", WEB_PAGE_TITLE = WEB_PAGE_TITLE, WEB_CUSTOM_BACKGROUND = WEB_CUSTOM_BACKGROUND, VERSION = VERSION)
 
 @app.route("/admin")
 def admin():

@@ -9,7 +9,7 @@
         />
         <title>{{ WEB_PAGE_TITLE }}</title>
     </head>
-    <body>
+    <body class="{% if WEB_CUSTOM_BACKGROUND %}custom-background{% endif %}">
         <div class="page-container">
             <h1>{{ WEB_PAGE_TITLE }}</h1>
             <p class="customWelcomeMsg">
@@ -33,6 +33,12 @@
                 <a class="btn" href="{{ url_for('logout') }}">Logout</a>
             </div>
         </div>
+        <footer>
+            Version {{ VERSION }} |
+            <a href="https://github.com/phipzzz/fritzbox-wlan-password-rotator"
+                >phipzzz</a
+            >
+        </footer>
         <script src="{{ url_for('static', filename='src/script/main.js') }}"></script>
     </body>
 </html>
