@@ -4,6 +4,10 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
+ARG VERSION="unknown"
+
+RUN echo "$VERSION" > /app/version.txt
+
 COPY requirements.txt requirements.txt
 
 RUN pip install --no-cache-dir -r requirements.txt
