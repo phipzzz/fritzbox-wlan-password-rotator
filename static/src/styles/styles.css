@@ -5,6 +5,16 @@ body {
     padding: 10px;
     box-sizing: border-box;
     overflow-x: hidden;
+    color: #333;
+}
+
+body.dark-background {
+    background-color: #333;
+    color: white;
+}
+
+body, .page-container > h1, p {
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
 }
 
 .qr-container {
@@ -22,10 +32,12 @@ body {
 .page-container > h1 {
     text-align: center;
     font-size: 2.8rem;
+    color: inherit;
 }
 
 p {
     font-size: 1.1rem;
+    color: inherit;
 }
 
 #network-name {
@@ -77,6 +89,10 @@ footer a:visited {
     transition: background-color 0.3s ease;
 }
 
+.btn:hover {
+    background-color: #444;
+}
+
 .login-input {
     display: block;
     width: 100%;
@@ -95,7 +111,10 @@ footer a:visited {
 }
 
 .custom-background {
-    background: url("/static/src/img/background.png") no-repeat center center
-        fixed;
+    background: url("/static/src/img/background.png") no-repeat center center fixed;
     background-size: cover;
+}
+
+body.dark-background .custom-background {
+    filter: brightness(0.5);
 }
