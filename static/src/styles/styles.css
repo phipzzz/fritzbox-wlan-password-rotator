@@ -5,16 +5,6 @@ body {
     padding: 10px;
     box-sizing: border-box;
     overflow-x: hidden;
-    color: #333;
-}
-
-body.dark-background {
-    background-color: #333;
-    color: white;
-}
-
-body, .page-container > h1, p {
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
 }
 
 .qr-container {
@@ -32,16 +22,20 @@ body, .page-container > h1, p {
 .page-container > h1 {
     text-align: center;
     font-size: 2.8rem;
-    color: inherit;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    color: white;
 }
 
 p {
     font-size: 1.1rem;
-    color: inherit;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    color: white;
 }
 
 #network-name {
     margin-top: 50px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    color: white;
 }
 
 img {
@@ -78,7 +72,7 @@ footer a:visited {
     margin: 20px auto;
     padding: 10px 0 10px 0;
     text-align: center;
-    background-color: #000000;
+    background: rgba(0, 0, 0, 0.5);
     color: white;
     text-decoration: none;
     font-size: 1rem;
@@ -90,7 +84,7 @@ footer a:visited {
 }
 
 .btn:hover {
-    background-color: #444;
+    background: rgba(0, 0, 0, 0.7);
 }
 
 .login-input {
@@ -113,8 +107,4 @@ footer a:visited {
 .custom-background {
     background: url("/static/src/img/background.png") no-repeat center center fixed;
     background-size: cover;
-}
-
-body.dark-background .custom-background {
-    filter: brightness(0.5);
 }
