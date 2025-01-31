@@ -22,14 +22,20 @@ body {
 .page-container > h1 {
     text-align: center;
     font-size: 2.8rem;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    color: white;
 }
 
 p {
     font-size: 1.1rem;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    color: white;
 }
 
 #network-name {
     margin-top: 50px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    color: white;
 }
 
 img {
@@ -66,7 +72,7 @@ footer a:visited {
     margin: 20px auto;
     padding: 10px 0 10px 0;
     text-align: center;
-    background-color: #000000;
+    background: rgba(0, 0, 0, 0.5);
     color: white;
     text-decoration: none;
     font-size: 1rem;
@@ -75,6 +81,10 @@ footer a:visited {
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background: rgba(0, 0, 0, 0.7);
 }
 
 .login-input {
@@ -95,7 +105,6 @@ footer a:visited {
 }
 
 .custom-background {
-    background: url("/static/src/img/background.png") no-repeat center center
-        fixed;
+    background: url("/static/src/img/background.png") no-repeat center center fixed;
     background-size: cover;
 }
