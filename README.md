@@ -14,6 +14,7 @@ The fritzbox-wlan-password-rotator is a simple tool which automatically updates 
 -   Automatic data fetching if the guest WLAN credentials were changed directly on your FRITZ!Box (or somewhere else)
 -   Show a custom welcome message (on public page)
 -   Show a custom background image ([see images](./images/))
+-   Custom CSS
 
 <img src="./images/qr-code_and_credentials.png" alt="qr code in safari" style="width: 700px; margin-right: 20px;"/>
 
@@ -56,7 +57,7 @@ Configuration is done via [.env](./.env)-file. You can also find the description
 
 ### Chose method to run
 
-There are many different ways to run the application. I personally recommend using docker compose, but it depends on your experience and setup.
+There are different ways to run the application. I personally recommend using docker compose, but it depends on your experience and setup. Feel also free to uncomment/add the bind mounts to use a custom background image or custom css file.
 
 #### docker run
 
@@ -91,6 +92,9 @@ services:
         restart: always
         env_file:
             - ./.env
+        # volumes:
+        #     - /path/to/background.png:/app/static/src/img/background.png
+        #     - /path/to/custom.css:/app/static/src/styles/styles-custom.css
 ```
 
 ```bash
@@ -119,6 +123,7 @@ Following FRITZ!Boxes were tested successfully. Feel free to add further ones. I
 
 -   **FRITZ!Box 7590 AX**
 
+    -   FRITZ!OS 8.02
     -   FRITZ!OS 8.00
 
 -   **FRITZ!Box 7530**
