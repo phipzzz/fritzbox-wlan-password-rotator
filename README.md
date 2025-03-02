@@ -128,6 +128,7 @@ Following FRITZ!Boxes were tested successfully. Feel free to add further ones. I
 
 -   **FRITZ!Box 7530**
 
+    -   FRITZ!OS 8.02
     -   FRITZ!OS 8.00
 
 -   **FRITZ!Box 7490**
