@@ -123,6 +123,7 @@ Following FRITZ!Boxes were tested successfully. Feel free to add further ones. I
 
 -   **FRITZ!Box 7590 AX**
 
+    -   FRITZ!OS 8.20
     -   FRITZ!OS 8.02
     -   FRITZ!OS 8.00
 
